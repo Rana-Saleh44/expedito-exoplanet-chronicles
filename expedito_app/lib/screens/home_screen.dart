@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../screens/signup_screen.dart'; // Import the SignUpScreen
 // import '../widgets/planet_widget.dart'; // Assuming you created this
 // import '../widgets/highlight_widget.dart';
 // import '../widgets/star_widget.dart';
@@ -58,7 +60,10 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () {
-                    // Define action
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUpScreen()),
+                    );
                   },
                   child: Text('Sign Up and Play!'),
                 ),
