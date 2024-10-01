@@ -1,39 +1,21 @@
 import 'package:flutter/material.dart';
 
 import '../screens/signup_screen.dart'; // Import the SignUpScreen
-// import '../widgets/planet_widget.dart'; // Assuming you created this
-// import '../widgets/highlight_widget.dart';
-// import '../widgets/star_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class onBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Set the background to black
+      // No need for a background color, as we are using the image as the background
       body: Stack(
         children: [
-          // Add planets, stars, and highlights as individual widgets
-          // Positioned(
-          //   top: 150,
-          //   left: 100,
-          //   child: PlanetWidget(imagePath: 'assets/planets/earth.png'),
-          // ),
-          // Positioned(
-          //   top: 100,
-          //   right: 80,
-          //   child: PlanetWidget(imagePath: 'assets/planets/mars.png'),
-          // ),
-          // Positioned(
-          //   bottom: 200,
-          //   left: 50,
-          //   child: HighlightWidget(),  // Custom widget for highlights
-          // ),
-          // // Add more elements like stars, other planets, etc.
-          // Positioned(
-          //   top: 50,
-          //   right: 200,
-          //   child: StarWidget(),
-          // ),
+          // Background image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/backgrounds/onbaording.png', // Replace with your actual image path
+              fit: BoxFit.cover, // Ensure the image covers the entire screen
+            ),
+          ),
           // Text and button overlay
           Positioned(
             top: 50,
@@ -58,14 +40,16 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 50),
-                ElevatedButton(
+                ElevatedButton.icon(
+                  // Using ElevatedButton.icon for text and icon
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SignUpScreen()),
                     );
                   },
-                  child: Text('Sign Up and Play!'),
+                  icon: Icon(Icons.arrow_forward), // Arrow icon
+                  label: Text('Sign Up & Play!'), // Updated button text
                 ),
               ],
             ),

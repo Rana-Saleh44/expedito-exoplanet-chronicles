@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_screen.dart'; // Import the HomeScreen
+import 'screens/onboarding.dart'; // Import the HomeScreen
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(), // Set HomeScreen as the initial route
+      home: onBoarding(), // Set HomeScreen as the initial route
     );
   }
 }

@@ -10,7 +10,7 @@ class SignUpScreen extends StatelessWidget {
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/backgrounds/home.png',
+              'assets/images/backgrounds/onboarding.png', // Replace with your actual image path
               fit: BoxFit.cover, // Ensure the image covers the entire screen
             ),
           ),
