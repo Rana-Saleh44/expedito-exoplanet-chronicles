@@ -17,7 +17,7 @@ class NasaButton extends StatelessWidget {
           // You might want to add the URL in the Planet model
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors.blue, // Blue color for the button
+          //primary: Colors.blue, // Blue color for the button
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
