@@ -66,6 +66,7 @@ flutter:
     - assets/images/backgrounds/Podium.png
     - assets/images/backgrounds/Planet.png
     - assets/images/icons/devicon_google.png
+    - assets/images/virtual_badges
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
