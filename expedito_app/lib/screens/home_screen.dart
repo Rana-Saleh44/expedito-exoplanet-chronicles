@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/space_background.png', // Replace with the actual path to your background image
+              'assets/images/backgrounds/home.png', // Replace with the actual path to your background image
               fit: BoxFit.cover,
             ),
           ),
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Logic to start the game
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
