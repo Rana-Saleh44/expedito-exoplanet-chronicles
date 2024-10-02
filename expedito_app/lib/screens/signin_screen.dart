@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +10,7 @@ class SignUpScreen extends StatelessWidget {
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/backgrounds/onboarding.png', // Replace with your actual image path
+              'assets/images/backgrounds/home.png',
               fit: BoxFit.cover, // Ensure the image covers the entire screen
             ),
           ),
@@ -31,9 +31,9 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
 
-                  // Title "Create an Account"
+                  // Title "Welcome Back!"
                   Text(
-                    'Create an Account',
+                    'Welcome Back!',
                     style: TextStyle(
                       color: Colors.purple,
                       fontSize: 28,
@@ -54,22 +54,6 @@ class SignUpScreen extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.purple),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16),
-
-                  // Email TextField
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'email',
-                      labelStyle: TextStyle(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple),
-                      ),
-                    ),
-                    keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 16),
 
@@ -123,27 +107,6 @@ class SignUpScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                           vertical: 12.0, horizontal: 20.0),
                     ),
-                  ),
-                  SizedBox(height: 30),
-
-                  // Sign in text with link
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Already have an account?',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Handle sign-in navigation
-                        },
-                        child: Text(
-                          'Sign in',
-                          style: TextStyle(color: Colors.purple),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),

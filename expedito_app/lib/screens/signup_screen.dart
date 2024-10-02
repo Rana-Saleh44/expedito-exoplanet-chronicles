@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/signin_screen.dart'; // Import the SignInScreen
+
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -136,7 +138,11 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Handle sign-in navigation
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignInScreen()),
+                          );
                         },
                         child: Text(
                           'Sign in',
