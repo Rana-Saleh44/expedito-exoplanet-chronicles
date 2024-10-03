@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666947467076",
+    "project_id": "nasa-space-apps-challeng-d0d02",
+    "storage_bucket": "nasa-space-apps-challeng-d0d02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666947467076:android:8072fccce56ccff0220911",
+        "android_client_info": {
+          "package_name": "com.example.expedito_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaT0UIZTkCYvIkkcnyGUDzOF4Ed8tZcEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

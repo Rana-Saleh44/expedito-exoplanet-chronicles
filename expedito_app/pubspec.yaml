@@ -78,19 +78,15 @@ flutter:
     - assets/fonts/SpaceGrotesk-Medium.ttf
     - assets/fonts/SpaceGrotesk-Regular.ttf
     - assets/images/icons/add_button.png
-<<<<<<< HEAD
-    - assets/images/icons/qr_code.png
-    - assets/images/icons/qr_rectangle.png
-
-=======
     - assets/images/icons/bronze.png
     - assets/images/icons/gold.png
     - assets/images/icons/silver.png
+    - assets/images/icons/qr_code.png
+    - assets/images/icons/qr_rectangle.png
     - assets/images/home_screen_icons/Home.png
     - assets/images/home_screen_icons/planet.png
     - assets/images/home_screen_icons/Playlist.png
     - assets/images/home_screen_icons/Trophy.png
->>>>>>> 643356468df10692a215b97005d5def5a24e5a71
   fonts:
     - family: SpaceGrotesk
       fonts:

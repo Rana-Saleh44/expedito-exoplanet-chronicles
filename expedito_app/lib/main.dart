@@ -1,10 +1,14 @@
-import 'package:expedito_app/screens/qr_screen.dart';
+import 'package:expedito_app/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
-
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: QrScreen(), // Set OnBoarding as the initial route
+      home: SignInScreen(), // Set OnBoarding as the initial route
     );
   }
 }
