@@ -14,6 +14,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  bool _isPasswordVisible = false; // Toggle for password visibility
 
   void _signUp() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -142,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: screenSize.width * 0.9,
                     child: TextFormField(
                       controller: _passwordController,
-                      obscureText: true,
+                      obscureText: !_isPasswordVisible, // Use the toggle here
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Password',
@@ -153,9 +154,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                         ),
-                        suffixIcon: Icon(
-                          Icons.visibility_off,
-                          color: Colors.white,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible =
+                                  !_isPasswordVisible; // Toggle visibility
+                            });
+                          },
                         ),
                       ),
                       validator: (value) {
