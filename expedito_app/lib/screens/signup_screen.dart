@@ -1,12 +1,49 @@
 import 'package:flutter/material.dart';
 
-import '../screens/signin_screen.dart'; // Import the SignInScreen
+import '../screens/signin_screen.dart';
+import '../services/auth_service.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  void _signUp() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        await AuthService().signUpWithEmailAndPassword(
+          _emailController.text.trim(),
+          _passwordController.text.trim(),
+        );
+
+        // Navigate to the next screen or show a success message
+      } catch (e) {
+        // Handle errors (e.g., show a snackbar)
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Get the screen size
-    final screenSize = MediaQuery.of(context).size; // Correctly get screen size
+    final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Stack(
@@ -18,214 +55,179 @@ class SignUpScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          // Foreground content
           Padding(
-            padding: EdgeInsets.all(screenSize.width * 0.05), // 5% padding
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: screenSize.height * 0.05), // 5% height
-                // Astronaut Image
-                Image.asset(
-                  'assets/images/astronauts/astronaut_logo.png',
-                  width: screenSize.width * 0.6, // 60% width
-                  height: screenSize.height * 0.3, // 30% height
-                  fit: BoxFit.cover,
-                ),
-                SizedBox(height: screenSize.height * 0.02), // 2% height
-                // Title "Create an Account"
-                Text(
-                  'Create an Account',
-                  style: TextStyle(
-                    color: Colors.blue, // Match the design color
-                    fontSize: screenSize.width * 0.07, // 7% of width
-                    fontWeight: FontWeight.bold,
+            padding: EdgeInsets.all(screenSize.width * 0.05),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: screenSize.height * 0.05),
+                  Image.asset(
+                    'assets/images/astronauts/astronaut_logo.png',
+                    width: screenSize.width * 0.6,
+                    height: screenSize.height * 0.3,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
-
-                // Username TextField
-                Container(
-                  width: screenSize.width * 0.9, // 90% of width
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'username',
-                      labelStyle: TextStyle(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
-
-                // Email TextField
-                Container(
-                  width: screenSize.width * 0.9, // 90% of width
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'email',
-                      labelStyle: TextStyle(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                      ),
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
-
-                // Password TextField
-                Container(
-                  width: screenSize.width * 0.9, // 90% of width
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'password',
-                      labelStyle: TextStyle(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                      ),
-                      suffixIcon: Icon(
-                        Icons.visibility_off,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
-                // "Or" Text
-                Container(
-                  width: 64,
-                  height: 26,
-                  child: Text(
-                    'Or',
+                  SizedBox(height: screenSize.height * 0.02),
+                  Text(
+                    'Create an Account',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Space Grotesk',
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                      height: 1.75, // Line height
-                      letterSpacing: -0.01,
+                      color: Colors.blue,
+                      fontSize: screenSize.width * 0.07,
+                      fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.center, // Correctly applied here
                   ),
-                ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
-                // Continue with Google section
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white, // Set the color of the border
-                    ),
-                    borderRadius: BorderRadius.circular(
-                        8), // Optional, for rounded corners
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 8), // Padding between border and content
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/icons/devicon_google.png', // Google icon image
-                          width: 25,
-                          height: 25,
+                  SizedBox(height: screenSize.height * 0.015),
+
+                  // Username TextField
+                  Container(
+                    width: screenSize.width * 0.9,
+                    child: TextFormField(
+                      controller: _usernameController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: 'Username',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
                         ),
-                        SizedBox(width: 8), // Space between icon and text
-                        Text(
-                          'Continue with Google',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Space Grotesk',
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                            height: 1.75,
-                            letterSpacing: -0.01,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a username';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: screenSize.height * 0.015),
+
+                  // Email TextField
+                  Container(
+                    width: screenSize.width * 0.9,
+                    child: TextFormField(
+                      controller: _emailController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value == null || !value.contains('@')) {
+                          return 'Please enter a valid email';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: screenSize.height * 0.015),
+
+                  // Password TextField
+                  Container(
+                    width: screenSize.width * 0.9,
+                    child: TextFormField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                        suffixIcon: Icon(
+                          Icons.visibility_off,
+                          color: Colors.white,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.length < 6) {
+                          return 'Password must be at least 6 characters';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: screenSize.height * 0.015),
+
+                  // Sign Up button
+                  _isLoading
+                      ? CircularProgressIndicator()
+                      : GestureDetector(
+                          onTap: _signUp,
+                          child: Container(
+                            width: screenSize.width * 0.8,
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 10.0,
+                                  offset: const Offset(0, 5),
+                                ),
+                              ],
+                            ),
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                fontSize: screenSize.height * 0.025,
+                                color: Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
+                  SizedBox(height: screenSize.height * 0.02),
 
-                SizedBox(height: screenSize.height * 0.02), // 2% height
-
-                // Sign Up button
-                Container(
-                  width:
-                      screenSize.width * 0.8, // Responsive width for the button
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 15), // Adjust vertical padding
-                  decoration: BoxDecoration(
-                    color: Colors.white, // Use Colors.white directly
-                    borderRadius:
-                        BorderRadius.circular(25), // Adjusted corner radius
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10.0,
-                        offset: const Offset(0, 5), // Shadow position
+                  // Already have an account? Sign in text
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Already have an account?',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: screenSize.width * 0.045,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignInScreen()),
+                          );
+                        },
+                        child: Text(
+                          'Sign in',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: screenSize.width * 0.045,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      fontSize:
-                          screenSize.height * 0.025, // Responsive font size
-                      color: Colors.black, // Use Colors.black directly
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                SizedBox(height: screenSize.height * 0.02), // 2% height
-
-                // Already have an account? Sign in text
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already have an account?',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Space Grotesk',
-                        fontSize:
-                            screenSize.width * 0.045, // Responsive font size
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignInScreen()),
-                        );
-                      },
-                      child: Text(
-                        'Sign in',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontFamily: 'Space Grotesk',
-                          fontSize:
-                              screenSize.width * 0.045, // Responsive font size
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

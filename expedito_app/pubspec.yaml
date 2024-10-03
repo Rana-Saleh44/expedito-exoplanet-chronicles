@@ -77,11 +77,12 @@ flutter:
     - assets/fonts/SpaceGrotesk-Light.ttf
     - assets/fonts/SpaceGrotesk-Medium.ttf
     - assets/fonts/SpaceGrotesk-Regular.ttf
+    - assets/images/icons/add_button.png
   fonts:
     - family: SpaceGrotesk
       fonts:
         - asset: assets/fonts/SpaceGrotesk-Regular.ttf
-          weight: 400 
+          weight: 400
         - asset: assets/fonts/SpaceGrotesk-Bold.ttf
           weight: 700
         - asset: assets/fonts/SpaceGrotesk-Medium.ttf

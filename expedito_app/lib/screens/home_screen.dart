@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/backgrounds/home.png', // Replace with the actual path to your background image
+              'assets/images/backgrounds/Planet.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               trailing: IconButton(
                                 icon: Image.asset(
-                                    'assets/images/plus_icon.png'), // Replace with your actual path
+                                    'assets/images/icons/add_button.png'),
                                 onPressed: () {
                                   // Add friend or navigate to friend's game or profile
                                 },
