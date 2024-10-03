@@ -1,7 +1,10 @@
+import 'package:expedito_app/utils/constants.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore import
 import '../screens/home_screen.dart'; // Import HomeScreen here
-import '../services/auth_service.dart';
+import '../screens/signin_screen.dart'; // Import SignInScreen here
+import '../services/auth_service.dart'; // Assuming this handles Firebase Authentication
+import 'package:flutter/gestures.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -16,6 +19,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isLoading = false;
   bool _isPasswordVisible = false; // Toggle for password visibility
 
+  // Add Firestore instance
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   void _signUp() async {
     if (_formKey.currentState?.validate() ?? false) {
       setState(() {
@@ -23,10 +29,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
       });
 
       try {
+        // Sign up the user using Firebase Auth
         await AuthService().signUpWithEmailAndPassword(
           _emailController.text.trim(),
           _passwordController.text.trim(),
         );
+
+        // Store user data in Firestore
+        await _firestore.collection('users').add({
+          'username': _usernameController.text.trim(),
+          'email': _emailController.text.trim(),
+          'password': _hashPassword(_passwordController.text.trim()), // Ensure to hash the password for security
+        });
 
         // Navigate to HomeScreen after successful sign-up
         Navigator.pushReplacement(
@@ -44,6 +58,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         });
       }
     }
+  }
+
+  // Dummy password hash function (replace this with a real hashing function)
+  String _hashPassword(String password) {
+    // Implement your own hashing mechanism here, such as using bcrypt
+    return password; // For now, we return the raw password (DON'T do this in production)
   }
 
   @override
@@ -77,10 +97,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: screenSize.height * 0.02),
                   Text(
                     'Create an Account',
-                    style: TextStyle(
+                    style: AppFonts.bold.copyWith(
+                      fontSize: screenSize.height * 0.035, // Increase the font size
                       color: Colors.blue,
-                      fontSize: screenSize.width * 0.07,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: screenSize.height * 0.015),
@@ -90,10 +109,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: screenSize.width * 0.9,
                     child: TextFormField(
                       controller: _usernameController,
-                      style: TextStyle(color: Colors.white),
+                      style: AppFonts.regular.copyWith(
+                        fontSize: screenSize.height * 0.025,
+                        color: Colors.white,
+                      ),
                       decoration: InputDecoration(
                         labelText: 'Username',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: AppFonts.regular.copyWith(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -116,10 +138,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: screenSize.width * 0.9,
                     child: TextFormField(
                       controller: _emailController,
-                      style: TextStyle(color: Colors.white),
+                      style: AppFonts.regular.copyWith(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: AppFonts.regular.copyWith(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -144,15 +166,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextFormField(
                       controller: _passwordController,
                       obscureText: !_isPasswordVisible, // Use the toggle here
-                      style: TextStyle(color: Colors.white),
+                      style: AppFonts.regular.copyWith(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: AppFonts.regular.copyWith(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -200,7 +222,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             child: Text(
                               'Sign Up',
-                              style: TextStyle(
+                              style: AppFonts.bold.copyWith(
                                 fontSize: screenSize.height * 0.025,
                                 color: Colors.black,
                               ),
@@ -208,6 +230,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                         ),
+
+                  SizedBox(height: screenSize.height * 0.02),
+
+                  // Already have an account text
+                  RichText(
+                    text: TextSpan(
+                      style: AppFonts.regular.copyWith(
+                        fontSize: screenSize.height * 0.025,
+                        color: Colors.white,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(text: 'Already have an account? '),
+                        TextSpan(
+                          text: 'Sign In',
+                          style: AppFonts.bold.copyWith(
+                            color: Colors.blue,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              // Navigate to SignInScreen
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignInScreen(),
+                                ),
+                              );
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

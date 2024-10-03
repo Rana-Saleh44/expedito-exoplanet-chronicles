@@ -1,10 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'home_screen.dart'; // Import your HomeScreen
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
+
+  Future<void> _signIn() async {
+    try {
+      // Sign in with email and password
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      // After sign-in, you can access Firestore if needed
+      final user = userCredential.user;
+      if (user != null) {
+        // Optional: Retrieve user data from Firestore
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        // Handle user data as needed
+
+        // Navigate to home screen after successful sign-in
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()), // Directly navigate to HomeScreen
+        );
+      }
+    } catch (e) {
+      print("Sign in error: $e"); // Print the error for debugging
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toString())),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Get the screen size
-    final screenSize = MediaQuery.of(context).size; // Correctly get screen size
+    final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Stack(
@@ -18,36 +59,37 @@ class SignInScreen extends StatelessWidget {
           ),
           // Foreground content
           Padding(
-            padding: EdgeInsets.all(screenSize.width * 0.05), // 5% padding
+            padding: EdgeInsets.all(screenSize.width * 0.05),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: screenSize.height * 0.05), // 5% height
+                SizedBox(height: screenSize.height * 0.05),
                 // Astronaut Image
                 Image.asset(
                   'assets/images/astronauts/astronaut_logo.png',
-                  width: screenSize.width * 0.6, // 60% width
-                  height: screenSize.height * 0.3, // 30% height
+                  width: screenSize.width * 0.6,
+                  height: screenSize.height * 0.3,
                   fit: BoxFit.cover,
                 ),
-                SizedBox(height: screenSize.height * 0.02), // 2% height
-                // Title "Create an Account"
+                SizedBox(height: screenSize.height * 0.02),
+                // Title "Welcome Back!"
                 Text(
                   'Welcome Back!',
                   style: TextStyle(
-                    color: Colors.blue, // Match the design color
-                    fontSize: screenSize.width * 0.07, // 7% of width
+                    color: Colors.blue,
+                    fontSize: screenSize.width * 0.07,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
+                SizedBox(height: screenSize.height * 0.015),
 
-                // Username TextField
+                // Email TextField
                 Container(
-                  width: screenSize.width * 0.9, // 90% of width
+                  width: screenSize.width * 0.9,
                   child: TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(
-                      labelText: 'username',
+                      labelText: 'Email',
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -59,15 +101,16 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
+                SizedBox(height: screenSize.height * 0.015),
 
                 // Password TextField
                 Container(
-                  width: screenSize.width * 0.9, // 90% of width
+                  width: screenSize.width * 0.9,
                   child: TextField(
-                    obscureText: true,
+                    controller: _passwordController,
+                    obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
-                      labelText: 'password',
+                      labelText: 'Password',
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -75,14 +118,22 @@ class SignInScreen extends StatelessWidget {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.blue),
                       ),
-                      suffixIcon: Icon(
-                        Icons.visibility_off,
-                        color: Colors.white,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
+
+                SizedBox(height: screenSize.height * 0.015),
 
                 // "Or" Text
                 Container(
@@ -95,35 +146,31 @@ class SignInScreen extends StatelessWidget {
                       fontFamily: 'Space Grotesk',
                       fontSize: 20,
                       fontWeight: FontWeight.normal,
-                      height: 1.75, // Line height
+                      height: 1.75,
                       letterSpacing: -0.01,
                     ),
-                    textAlign: TextAlign.center, // Correctly applied here
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.015), // 1.5% height
+                SizedBox(height: screenSize.height * 0.015),
 
                 // Continue with Google section
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white, // Set the color of the border
-                    ),
-                    borderRadius: BorderRadius.circular(
-                        8), // Optional, for rounded corners
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 8), // Padding between border and content
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/images/icons/devicon_google.png', // Google icon image
+                          'assets/images/icons/devicon_google.png',
                           width: 25,
                           height: 25,
                         ),
-                        SizedBox(width: 8), // Space between icon and text
+                        SizedBox(width: 8),
                         Text(
                           'Continue with Google',
                           style: TextStyle(
@@ -139,34 +186,33 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0.02), // 2% height
+                SizedBox(height: screenSize.height * 0.02),
 
-                // Sign Up button
-                Container(
-                  width:
-                      screenSize.width * 0.8, // Responsive width for the button
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 15), // Adjust vertical padding
-                  decoration: BoxDecoration(
-                    color: Colors.white, // Use Colors.white directly
-                    borderRadius:
-                        BorderRadius.circular(25), // Adjusted corner radius
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10.0,
-                        offset: const Offset(0, 5), // Shadow position
-                      ),
-                    ],
-                  ),
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(
-                      fontSize:
-                          screenSize.height * 0.025, // Responsive font size
-                      color: Colors.black, // Use Colors.black directly
+                // Sign In button
+                GestureDetector(
+                  onTap: _signIn,
+                  child: Container(
+                    width: screenSize.width * 0.8,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10.0,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
                     ),
-                    textAlign: TextAlign.center,
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontSize: screenSize.height * 0.025,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ],

@@ -1,4 +1,4 @@
-import 'package:expedito_app/screens/signin_screen.dart';
+import 'package:expedito_app/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SignInScreen(), // Set OnBoarding as the initial route
+      home: OnBoarding(), // Set OnBoarding as the initial route
     );
   }
 }
