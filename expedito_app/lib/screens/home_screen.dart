@@ -77,10 +77,18 @@ class HomeScreen extends StatelessWidget {
         type: BottomNavigationBarType.fixed, // Ensure fixed type
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/home_screen_icons/Home.png',
-              width: 24,
-              height: 24,
+            icon: Container(
+              padding: EdgeInsets.all(8.0), // Add padding to the icon
+              decoration: BoxDecoration(
+                color: Color(0xFF3ABEF9)
+                    .withOpacity(0.2), // Light background color
+                borderRadius: BorderRadius.circular(12), // Rounded corners
+              ),
+              child: Image.asset(
+                'assets/images/home_screen_icons/Home.png',
+                width: 24,
+                height: 24,
+              ),
             ),
             label: '',
           ),
