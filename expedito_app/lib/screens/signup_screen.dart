@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/signin_screen.dart';
+import '../screens/home_screen.dart'; // Import HomeScreen here
 import '../services/auth_service.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -27,7 +27,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           _passwordController.text.trim(),
         );
 
-        // Navigate to the next screen or show a success message
+        // Navigate to HomeScreen after successful sign-up
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
       } catch (e) {
         // Handle errors (e.g., show a snackbar)
         ScaffoldMessenger.of(context).showSnackBar(
@@ -193,39 +197,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                         ),
-                  SizedBox(height: screenSize.height * 0.02),
-
-                  // Already have an account? Sign in text
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Already have an account?',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: screenSize.width * 0.045,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInScreen()),
-                          );
-                        },
-                        child: Text(
-                          'Sign in',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: screenSize.width * 0.045,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
