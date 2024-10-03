@@ -73,17 +73,39 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF141414), // Set the background color
+        type: BottomNavigationBarType.fixed, // Ensure fixed type
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset(
+              'assets/images/home_screen_icons/Home.png',
+              width: 24,
+              height: 24,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
+            icon: Image.asset(
+              'assets/images/home_screen_icons/planet.png',
+              width: 24,
+              height: 24,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
+            icon: Image.asset(
+              'assets/images/home_screen_icons/Playlist.png',
+              width: 24,
+              height: 24,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/images/home_screen_icons/Trophy.png',
+              width: 24,
+              height: 24,
+            ),
             label: '',
           ),
         ],

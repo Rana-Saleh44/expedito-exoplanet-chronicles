@@ -81,6 +81,10 @@ flutter:
     - assets/images/icons/bronze.png
     - assets/images/icons/gold.png
     - assets/images/icons/silver.png
+    - assets/images/home_screen_icons/Home.png
+    - assets/images/home_screen_icons/planet.png
+    - assets/images/home_screen_icons/Playlist.png
+    - assets/images/home_screen_icons/Trophy.png
   fonts:
     - family: SpaceGrotesk
       fonts:
