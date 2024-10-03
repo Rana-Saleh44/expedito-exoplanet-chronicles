@@ -73,7 +73,10 @@ flutter:
     - assets/images/virtual_badges/life_seeker.png
     - assets/images/virtual_badges/orbit_master.png
     - assets/images/virtual_badges/super_earther.png
-    - assets/fonts
+    - assets/fonts/SpaceGrotesk-Bold.ttf
+    - assets/fonts/SpaceGrotesk-Light.ttf
+    - assets/fonts/SpaceGrotesk-Medium.ttf
+    - assets/fonts/SpaceGrotesk-Regular.ttf
   fonts:
     - family: SpaceGrotesk
       fonts:
