@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home_screen.dart'; // Import your HomeScreen
+import 'package:expedito_app/utils/constants.dart';
+
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -16,7 +18,8 @@ class _SignInScreenState extends State<SignInScreen> {
   Future<void> _signIn() async {
     try {
       // Sign in with email and password
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
@@ -25,13 +28,18 @@ class _SignInScreenState extends State<SignInScreen> {
       final user = userCredential.user;
       if (user != null) {
         // Optional: Retrieve user data from Firestore
-        DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
         // Handle user data as needed
 
         // Navigate to home screen after successful sign-in
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()), // Directly navigate to HomeScreen
+          MaterialPageRoute(
+              builder: (context) =>
+                  HomeScreen()), // Directly navigate to HomeScreen
         );
       }
     } catch (e) {
@@ -75,52 +83,54 @@ class _SignInScreenState extends State<SignInScreen> {
                 // Title "Welcome Back!"
                 Text(
                   'Welcome Back!',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: screenSize.width * 0.07,
-                    fontWeight: FontWeight.bold,
+                  style: AppFonts.bold.copyWith(
+                      color: Colors.blue,
+                      fontSize: screenSize.width * 0.07,
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.015),
 
-                // Email TextField
+// Email TextField
                 Container(
                   width: screenSize.width * 0.9,
                   child: TextField(
                     controller: _emailController,
+                    style: AppFonts.regular.copyWith(color: Colors.white), // Change text color to white
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: AppFonts.regular.copyWith(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
+                        borderSide: BorderSide(color: Colors.white),
                       ),
                     ),
                   ),
                 ),
 
                 SizedBox(height: screenSize.height * 0.015),
-
                 // Password TextField
                 Container(
                   width: screenSize.width * 0.9,
                   child: TextField(
                     controller: _passwordController,
                     obscureText: !_isPasswordVisible,
+                    style: AppFonts.regular.copyWith(color: Colors.white), // Change text color to white
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: AppFonts.regular.copyWith(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
+                        borderSide: BorderSide(color: Colors.white),
                       ),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                           color: Colors.white,
                         ),
                         onPressed: () {
@@ -132,7 +142,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                 ),
-
                 SizedBox(height: screenSize.height * 0.015),
 
                 // "Or" Text
@@ -207,7 +216,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     child: Text(
                       'Sign In',
-                      style: TextStyle(
+                      style: AppFonts.bold.copyWith(
                         fontSize: screenSize.height * 0.025,
                         color: Colors.black,
                       ),
