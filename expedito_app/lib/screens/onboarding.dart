@@ -1,7 +1,7 @@
 import 'package:expedito_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/constants.dart';
+import '../utils/constants.dart'; // Import the constants file
 
 class OnBoarding extends StatelessWidget {
   @override
@@ -58,7 +58,7 @@ class OnBoarding extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              SignUpScreen()), // Navigate to LoginScreen
+                              SignUpScreen()), // Navigate to SignUpScreen
                     );
                   },
                   child: Container(
