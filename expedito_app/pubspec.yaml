@@ -78,6 +78,9 @@ flutter:
     - assets/fonts/SpaceGrotesk-Medium.ttf
     - assets/fonts/SpaceGrotesk-Regular.ttf
     - assets/images/icons/add_button.png
+    - assets/images/icons/qr_code.png
+    - assets/images/icons/qr_rectangle.png
+
   fonts:
     - family: SpaceGrotesk
       fonts:

@@ -10,8 +10,9 @@ class QrScreen extends StatefulWidget {
 class _ScanExoplanetCardScreenState extends State<QrScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  QRViewController? controller; // Make this nullable
-  String? scanResult; // Make this nullable
+  QRViewController? controller;
+  String? scanResult;
+  bool isCameraOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class _ScanExoplanetCardScreenState extends State<QrScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/backgrounds/home.png'),
-            fit: BoxFit.cover, // Adjust the image to cover the entire container
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(
@@ -34,17 +35,29 @@ class _ScanExoplanetCardScreenState extends State<QrScreen> {
             Container(
               height: 200,
               width: 200,
-              child: QRView(
-                key: qrKey,
-                onQRViewCreated: _onQRViewCreated,
-                overlay: QrScannerOverlayShape(
-                  borderColor: Colors.white,
-                  borderRadius: 10,
-                  borderLength: 30,
-                  borderWidth: 10,
-                  cutOutSize: 150,
-                ),
-              ),
+              child: isCameraOpen
+                  ? QRView(
+                      key: qrKey,
+                      onQRViewCreated: _onQRViewCreated,
+                      overlay: QrScannerOverlayShape(
+                        borderColor: Colors.white,
+                        borderRadius: 10,
+                        borderLength: 30,
+                        borderWidth: 10,
+                        cutOutSize: 150,
+                      ),
+                    )
+                  : Stack(
+                      children: [
+                        Image.asset('assets/images/icons/qr_code.png'),
+                        Positioned(
+                          top: 80, // Adjust this value to move the image down
+                          left: 0,
+                          right: 0,
+                          child: Image.asset('assets/images/icons/qr_rectangle.png'),
+                        ),
+                      ],
+                    ),
             ),
             SizedBox(height: 20),
             Text(
@@ -55,11 +68,13 @@ class _ScanExoplanetCardScreenState extends State<QrScreen> {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Logic for scanning
+                setState(() {
+                  isCameraOpen = true;
+                });
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white, // Button background color
-                foregroundColor: Colors.black, // Button text color
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -90,7 +105,7 @@ class _ScanExoplanetCardScreenState extends State<QrScreen> {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        scanResult = scanData.code ?? 'No data found'; // Capture QR code data
+        scanResult = scanData.code ?? 'No data found';
         // Process the QR code and retrieve exoplanet details
       });
     });
