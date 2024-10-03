@@ -5,6 +5,10 @@ import '../utils/constants.dart'; // Import the constants file
 class OnBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Get the screen dimensions
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -17,57 +21,66 @@ class OnBoarding extends StatelessWidget {
           ),
           // Text and button overlay
           Positioned(
-            top: 89,
-            left: 57,
+            top: screenHeight * 0.2, // Use responsive top position
+            left: screenWidth * 0.1, // Use responsive left position
+            right: screenWidth * 0.1, // Responsive right position
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'EXPEDITO',
                   style: AppFonts.bold.copyWith(
-                    fontSize: 45,
-                    height: 34.95 /
-                        45, // line-height in Flutter is given as height = lineHeight / fontSize
+                    fontSize: screenHeight * 0.06, // Responsive font size
+                    height: 34.95 / 45,
                     letterSpacing: -0.01,
                     color: AppColors.white,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 69), // Adjust space between texts
+                SizedBox(height: screenHeight * 0.1), // Responsive space
                 Text(
                   'Journey through the exoplanets',
                   style: AppFonts.regular.copyWith(
-                    fontSize: 30,
+                    fontSize: screenHeight * 0.04, // Responsive font size
                     height: 34.95 / 30,
                     letterSpacing: -0.01,
                     color: AppColors.blue,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 102), // Adjust space between text and button
+                SizedBox(
+                    height: screenHeight *
+                        0.1), // Adjust space between text and button
                 Container(
-                  width: 245,
-                  height: 82,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 81, vertical: 17),
+                  width: screenWidth * 0.8, // Responsive width for the button
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 20), // Adjust vertical padding
                   decoration: BoxDecoration(
                     color: AppColors.white,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                    ),
+                    borderRadius:
+                        BorderRadius.circular(25), // Adjusted corner radius
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10.0,
+                        offset: const Offset(0, 5), // Shadow position
+                      ),
+                    ],
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment:
+                        MainAxisAlignment.center, // Center the text and icon
                     children: [
                       Text(
                         'Sign Up & Play!',
                         style: AppFonts.bold.copyWith(
-                          fontSize: 21,
-                          height: 28.64 / 21,
+                          fontSize:
+                              screenHeight * 0.025, // Responsive font size
                           color: AppColors.black,
                         ),
-                        textAlign: TextAlign.left,
+                        textAlign: TextAlign.center,
                       ),
+                      SizedBox(width: 10), // Space between text and icon
                       Icon(
                         Icons.arrow_forward,
                         color: AppColors.black,
