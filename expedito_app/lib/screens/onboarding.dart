@@ -1,6 +1,7 @@
+import 'package:expedito_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/constants.dart'; // Import the constants file
+import '../utils/constants.dart';
 
 class OnBoarding extends StatelessWidget {
   @override
@@ -51,42 +52,52 @@ class OnBoarding extends StatelessWidget {
                 SizedBox(
                     height: screenHeight *
                         0.1), // Adjust space between text and button
-                Container(
-                  width: screenWidth * 0.8, // Responsive width for the button
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20), // Adjust vertical padding
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius:
-                        BorderRadius.circular(25), // Adjusted corner radius
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10.0,
-                        offset: const Offset(0, 5), // Shadow position
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.center, // Center the text and icon
-                    children: [
-                      Text(
-                        'Sign Up & Play!',
-                        style: AppFonts.bold.copyWith(
-                          fontSize:
-                              screenHeight * 0.025, // Responsive font size
-                          color: AppColors.black,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SignUpScreen()), // Navigate to LoginScreen
+                    );
+                  },
+                  child: Container(
+                    width: screenWidth * 0.8, // Responsive width for the button
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20), // Adjust vertical padding
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius:
+                          BorderRadius.circular(25), // Adjusted corner radius
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10.0,
+                          offset: const Offset(0, 5), // Shadow position
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(width: 10), // Space between text and icon
-                      Icon(
-                        Icons.arrow_forward,
-                        color: AppColors.black,
-                        size: 28,
-                      ),
-                    ],
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.center, // Center the text and icon
+                      children: [
+                        Text(
+                          'Sign Up & Play!',
+                          style: AppFonts.bold.copyWith(
+                            fontSize:
+                                screenHeight * 0.025, // Responsive font size
+                            color: AppColors.black,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(width: 10), // Space between text and icon
+                        Icon(
+                          Icons.arrow_forward,
+                          color: AppColors.black,
+                          size: 28,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
