@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CollectionsScreen extends StatelessWidget {
+class BadgesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,28 +59,6 @@ class CollectionsScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 20),
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    children: [
-                      CollectionItem(
-                        title: 'Gas Giants',
-                        progress: '75%',
-                        medals: ['gold', 'silver', 'bronze'],
-                      ),
-                      CollectionItem(
-                        title: 'Eccentric Orbits',
-                        progress: '100%',
-                        medals: ['gold', 'silver', 'bronze'],
-                      ),
-                      CollectionItem(
-                        title: 'Super-Earths',
-                        progress: '24%',
-                        medals: ['gold'],
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ],
