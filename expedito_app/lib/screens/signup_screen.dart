@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/signin_screen.dart';
+import '../screens/home_screen.dart'; // Import HomeScreen here
 import '../services/auth_service.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -14,6 +14,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  bool _isPasswordVisible = false; // Toggle for password visibility
 
   void _signUp() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -27,7 +28,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           _passwordController.text.trim(),
         );
 
-        // Navigate to the next screen or show a success message
+        // Navigate to HomeScreen after successful sign-up
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
       } catch (e) {
         // Handle errors (e.g., show a snackbar)
         ScaffoldMessenger.of(context).showSnackBar(
@@ -138,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: screenSize.width * 0.9,
                     child: TextFormField(
                       controller: _passwordController,
-                      obscureText: true,
+                      obscureText: !_isPasswordVisible, // Use the toggle here
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Password',
@@ -149,9 +154,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                         ),
-                        suffixIcon: Icon(
-                          Icons.visibility_off,
-                          color: Colors.white,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible =
+                                  !_isPasswordVisible; // Toggle visibility
+                            });
+                          },
                         ),
                       ),
                       validator: (value) {
@@ -193,39 +208,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                         ),
-                  SizedBox(height: screenSize.height * 0.02),
-
-                  // Already have an account? Sign in text
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Already have an account?',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: screenSize.width * 0.045,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInScreen()),
-                          );
-                        },
-                        child: Text(
-                          'Sign in',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: screenSize.width * 0.045,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
