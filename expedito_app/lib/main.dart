@@ -1,5 +1,5 @@
-import 'package:expedito_app/screens/qr_screen.dart';
 import 'package:flutter/material.dart';
+
 import 'screens/onboarding.dart'; // Import the HomeScreen
 
 void main() {

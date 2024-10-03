@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import '../models/planet.dart'; // Planet model
 
 class QrScreen extends StatefulWidget {
   @override
-  _ScanExoplanetCardScreenState createState() => _ScanExoplanetCardScreenState();
+  _ScanExoplanetCardScreenState createState() =>
+      _ScanExoplanetCardScreenState();
 }
 
 class _ScanExoplanetCardScreenState extends State<QrScreen> {
