@@ -1,4 +1,4 @@
-import 'package:expedito_app/screens/badges_screen.dart';
+import 'package:expedito_app/screens/no_exoplants.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BadgesScreen(), // Set OnBoarding as the initial route
+      home: NoExoplants(), // Set OnBoarding as the initial route
     );
   }
 }
