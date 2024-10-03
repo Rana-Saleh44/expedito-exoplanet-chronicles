@@ -73,6 +73,18 @@ flutter:
     - assets/images/virtual_badges/life_seeker.png
     - assets/images/virtual_badges/orbit_master.png
     - assets/images/virtual_badges/super_earther.png
+    - assets/fonts
+  fonts:
+    - family: SpaceGrotesk
+      fonts:
+        - asset: assets/fonts/SpaceGrotesk-Regular.ttf
+          weight: 400 
+        - asset: assets/fonts/SpaceGrotesk-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SpaceGrotesk-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SpaceGrotesk-Light.ttf
+          weight: 300
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
