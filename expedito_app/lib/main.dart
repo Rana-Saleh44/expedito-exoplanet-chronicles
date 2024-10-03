@@ -1,4 +1,4 @@
-import 'package:expedito_app/screens/no_exoplants.dart';
+import 'package:expedito_app/screens/new_player_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

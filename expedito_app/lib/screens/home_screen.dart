@@ -44,11 +44,6 @@ class HomeScreen extends StatelessWidget {
                 child: ListView(
                   padding: EdgeInsets.all(8.0),
                   children: [
-                    FriendItem(name: 'salmahamed'),
-                    FriendItem(name: 'mennaosama'),
-                    FriendItem(name: 'jananayef'),
-                    FriendItem(name: 'nadinelshafey'),
-                    FriendItem(name: 'ranasaleh'),
                     FriendItem(name: 'add a new player'),
                   ],
                 ),
