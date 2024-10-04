@@ -93,6 +93,7 @@ flutter:
     - assets/images/quizzes/gas_giants.png
     - assets/images/quizzes/habitable_zones.png
     - assets/images/quizzes/super_earths.png
+    - assets/images/quizzes/arrow.png
   fonts:
     - family: SpaceGrotesk
       fonts:

@@ -30,11 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-<<<<<<< HEAD
         home: QuizzesScreen(), // Set OnBoarding as the initial route
-=======
-        home: QrScreen(), // Set OnBoarding as the initial route
->>>>>>> e495e7f5a4eaa1009fcd2386a8ca4efa0e3a01fb
         routes: {
           // Define the routes for the application
           '/newPlayer': (context) =>
