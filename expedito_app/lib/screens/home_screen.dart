@@ -1,8 +1,16 @@
+import 'package:expedito_app/screens/leaderboard_screen.dart';
+import 'package:expedito_app/screens/seach_friends_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/player_provider.dart';
+import '../utils/navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final playerProvider = Provider.of<PlayerProvider>(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -15,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           ),
           Column(
             children: [
-              SizedBox(height: 50), // Adjust as needed
+              SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -28,6 +36,14 @@ class HomeScreen extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.8),
                   ),
+                  onSubmitted: (value) {
+                    // Navigate to search friends screen
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => SearchFriendsScreen(query: value),
+                      ),
+                    );
+                  },
                 ),
               ),
               SizedBox(height: 20),
@@ -41,22 +57,25 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: ListView(
+                child: ListView.builder(
                   padding: EdgeInsets.all(8.0),
-                  children: [
-                    FriendItem(name: 'add a new player'),
-                  ],
+                  itemCount: playerProvider.players.length,
+                  itemBuilder: (context, index) {
+                    final player = playerProvider.players[index];
+                    return FriendItem(name: player.name);
+                  },
                 ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Handle Start button press
+                  // Navigate to ask number of exoplanets screen
+                  NavigationUtils.navigateToStartGame(context);
                 },
                 child: Text('Start!'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white, // Corrected style
-                  foregroundColor: Colors.black, // Corrected style
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -68,16 +87,15 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF141414), // Set the background color
-        type: BottomNavigationBarType.fixed, // Ensure fixed type
+        backgroundColor: Color(0xFF141414),
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
             icon: Container(
-              padding: EdgeInsets.all(8.0), // Add padding to the icon
+              padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: Color(0xFF3ABEF9)
-                    .withOpacity(0.2), // Light background color
-                borderRadius: BorderRadius.circular(12), // Rounded corners
+                color: Color(0xFF3ABEF9).withOpacity(0.2),
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Image.asset(
                 'assets/images/home_screen_icons/Home.png',
@@ -112,6 +130,18 @@ class HomeScreen extends StatelessWidget {
             label: '',
           ),
         ],
+        onTap: (index) {
+          if (index == 3) {
+            // Assuming the last icon corresponds to index 3
+            // Navigate to LeaderboardScreen when the last icon is tapped
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    LeaderboardScreen(), // Navigate to the LeaderboardScreen
+              ),
+            );
+          }
+        },
       ),
     );
   }
@@ -141,7 +171,9 @@ class FriendItem extends StatelessWidget {
         trailing: IconButton(
           icon: Image.asset('assets/images/icons/add_button.png'),
           onPressed: () {
-            // Handle friend adding logic
+            // Add new player logic
+            Provider.of<PlayerProvider>(context, listen: false)
+                .addNewPlayer(name);
           },
         ),
       ),

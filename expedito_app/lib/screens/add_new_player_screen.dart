@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NumberExoplanets extends StatelessWidget {
+class NewPlayerScreen extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -24,7 +24,7 @@ class NumberExoplanets extends StatelessWidget {
                   width: 299,
                   height: 89,
                   child: Text(
-                    'How many exoplanets did you explore/invade?',
+                    'New Player Name',
                     style: TextStyle(
                       fontFamily: 'Space Grotesk',
                       fontSize: 30,
@@ -51,7 +51,7 @@ class NumberExoplanets extends StatelessWidget {
                     controller: _controller,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Enter the number of exoplanets',
+                      hintText: 'Enter player name',
                       hintStyle: TextStyle(color: Colors.grey[400]),
                     ),
                   ),

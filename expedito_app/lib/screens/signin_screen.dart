@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'home_screen.dart'; // Import your HomeScreen
 import 'package:expedito_app/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
+import 'home_screen.dart'; // Import your HomeScreen
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -84,8 +84,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 Text(
                   'Welcome Back!',
                   style: AppFonts.bold.copyWith(
-                      color: Colors.blue,
-                      fontSize: screenSize.width * 0.07,
+                    color: Colors.blue,
+                    fontSize: screenSize.width * 0.07,
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.015),
@@ -95,10 +95,12 @@ class _SignInScreenState extends State<SignInScreen> {
                   width: screenSize.width * 0.9,
                   child: TextField(
                     controller: _emailController,
-                    style: AppFonts.regular.copyWith(color: Colors.white), // Change text color to white
+                    style: AppFonts.regular.copyWith(
+                        color: Colors.white), // Change text color to white
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      labelStyle: AppFonts.regular.copyWith(color: Colors.white),
+                      labelStyle:
+                          AppFonts.regular.copyWith(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
@@ -116,10 +118,12 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: TextField(
                     controller: _passwordController,
                     obscureText: !_isPasswordVisible,
-                    style: AppFonts.regular.copyWith(color: Colors.white), // Change text color to white
+                    style: AppFonts.regular.copyWith(
+                        color: Colors.white), // Change text color to white
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      labelStyle: AppFonts.regular.copyWith(color: Colors.white),
+                      labelStyle:
+                          AppFonts.regular.copyWith(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
