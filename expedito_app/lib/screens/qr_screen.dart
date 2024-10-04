@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expedito_app/models/planet.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'exoplanet_screen.dart';
-import 'package:expedito_app/models/planet.dart';
+
 class QrScreen extends StatefulWidget {
   @override
   _QrScreenState createState() => _QrScreenState();
@@ -54,7 +56,8 @@ class _QrScreenState extends State<QrScreen> {
                           top: 80,
                           left: 0,
                           right: 0,
-                          child: Image.asset('assets/images/icons/qr_rectangle.png'),
+                          child: Image.asset(
+                              'assets/images/icons/qr_rectangle.png'),
                         ),
                       ],
                     ),
@@ -107,26 +110,32 @@ class _QrScreenState extends State<QrScreen> {
       setState(() {
         scanResult = scanData.code ?? 'No data found';
       });
-      
+
       if (scanResult != null) {
         // Close the QR scanner
         controller.pauseCamera();
-        
+
         try {
-          // Fetch planet data from Firestore
+          // Transform the scan result to lowercase and replace spaces with dashes
+          String transformedResult =
+              scanResult!.toLowerCase().replaceAll(' ', '-');
+
+          // Fetch planet data from Firestore using the transformed result
           DocumentSnapshot planetDoc = await FirebaseFirestore.instance
-              .collection('planets')
-              .doc(scanResult)
+              .collection('Planets')
+              .doc(
+                  transformedResult) // Use transformedResult instead of scanResult
               .get();
 
           if (planetDoc.exists) {
-            Map<String, dynamic> planetData = planetDoc.data() as Map<String, dynamic>;
+            Map<String, dynamic> planetData =
+                planetDoc.data() as Map<String, dynamic>;
             // Create a Planet object
             Planet planet = Planet.fromFirestore(planetData);
-            
+
             // Fetch the image URL
             await planet.fetchImageUrl();
-            
+
             // Navigate to the ExoplanetScreen with the Planet object
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
