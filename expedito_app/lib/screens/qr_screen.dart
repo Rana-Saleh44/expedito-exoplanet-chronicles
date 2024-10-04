@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'exoplanet_screen.dart'; // Import your HomeScreen
+
 
 class QrScreen extends StatefulWidget {
   @override
@@ -102,14 +106,25 @@ class _ScanExoplanetCardScreenState extends State<QrScreen> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        scanResult = scanData.code ?? 'No data found';
-        // Process the QR code and retrieve exoplanet details
-      });
+  this.controller = controller;
+  controller.scannedDataStream.listen((scanData) async {
+    setState(() {
+      scanResult = scanData.code ?? 'No data found';
     });
-  }
+    
+    if (scanResult != null) {
+      // Close the QR scanner
+      controller.pauseCamera();
+      
+      // Navigate to the screen that processes the planet data
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => ExoplanetScreen(scannedCode: scanResult!),
+        ),
+      );
+    }
+  });
+}
 
   @override
   void dispose() {
