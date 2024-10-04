@@ -1,6 +1,6 @@
 import 'package:expedito_app/providers/player_provider.dart';
 import 'package:expedito_app/screens/add_new_player_screen.dart';
-import 'package:expedito_app/screens/qr_screen.dart';
+import 'package:expedito_app/screens/quizzes_screen.dart';
 import 'package:expedito_app/screens/signin_screen.dart';
 import 'package:expedito_app/screens/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,9 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-
-        home: QrScreen(),
-
+        home: QuizzesScreen(), // Set OnBoarding as the initial route
         routes: {
           // Define the routes for the application
           '/newPlayer': (context) =>

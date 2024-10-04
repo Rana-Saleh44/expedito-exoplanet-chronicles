@@ -41,14 +41,89 @@ class _QuizzesScreenState extends State<QuizzesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Stack(
         children: [
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/backgrounds/Planet.png',
+              'assets/images/backgrounds/home.png',
               fit: BoxFit.cover,
+            ),
+          ),
+          // Scrollable Column with specified children
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 63.0, left: 20.0, right: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // First Child - Arrow and Centered Quizzes text
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/quizzes/arrow.png',
+                        width: screenWidth * 0.1, // Adjust size for responsiveness
+                        height: screenWidth * 0.1,
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: const Text(
+                            'Quizzes',
+                            style: TextStyle(
+                              fontFamily: 'Space Grotesk',
+                              fontSize: 30,
+                              fontWeight: FontWeight.w700,
+                              height: 1.5,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 18),
+                  // Second Child - Test your knowledge text
+                  const Text(
+                    'Test your knowledge and increase your score!',
+                    style: TextStyle(
+                      fontFamily: 'Space Grotesk',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w400,
+                      height: 1.46,
+                      letterSpacing: -0.01,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  // Third Child - Set of images under each other
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/quizzes/gas_giants.png',
+                        width: screenWidth * 0.8,
+                      ),
+                      const SizedBox(height: 10),
+                      Image.asset(
+                        'assets/images/quizzes/super_earths.png',
+                        width: screenWidth * 0.8,
+                      ),
+                      const SizedBox(height: 10),
+                      Image.asset(
+                        'assets/images/quizzes/eccentric_orbits.png',
+                        width: screenWidth * 0.8,
+                      ),
+                      const SizedBox(height: 10),
+                      Image.asset(
+                        'assets/images/quizzes/habitable_zones.png',
+                        width: screenWidth * 0.8,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
