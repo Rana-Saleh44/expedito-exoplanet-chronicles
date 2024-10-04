@@ -1,10 +1,11 @@
-import 'package:expedito_app/utils/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore import
+import 'package:expedito_app/utils/constants.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
 import '../screens/home_screen.dart'; // Import HomeScreen here
 import '../screens/signin_screen.dart'; // Import SignInScreen here
 import '../services/auth_service.dart'; // Assuming this handles Firebase Authentication
-import 'package:flutter/gestures.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -39,7 +40,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await _firestore.collection('users').add({
           'username': _usernameController.text.trim(),
           'email': _emailController.text.trim(),
-          'password': _hashPassword(_passwordController.text.trim()), // Ensure to hash the password for security
+          'password': _hashPassword(_passwordController.text
+              .trim()), // Ensure to hash the password for security
         });
 
         // Navigate to HomeScreen after successful sign-up
@@ -98,7 +100,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Text(
                     'Create an Account',
                     style: AppFonts.bold.copyWith(
-                      fontSize: screenSize.height * 0.035, // Increase the font size
+                      fontSize:
+                          screenSize.height * 0.035, // Increase the font size
                       color: Colors.blue,
                     ),
                   ),
@@ -115,7 +118,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       decoration: InputDecoration(
                         labelText: 'Username',
-                        labelStyle: AppFonts.regular.copyWith(color: Colors.white),
+                        labelStyle:
+                            AppFonts.regular.copyWith(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -141,7 +145,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: AppFonts.regular.copyWith(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Email',
-                        labelStyle: AppFonts.regular.copyWith(color: Colors.white),
+                        labelStyle:
+                            AppFonts.regular.copyWith(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -169,7 +174,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: AppFonts.regular.copyWith(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        labelStyle: AppFonts.regular.copyWith(color: Colors.white),
+                        labelStyle:
+                            AppFonts.regular.copyWith(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),

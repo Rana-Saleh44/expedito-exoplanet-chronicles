@@ -1,16 +1,30 @@
-import 'package:expedito_app/screens/leaderboard_screen.dart';
-import 'package:expedito_app/screens/seach_friends_screen.dart';
+import 'package:expedito_app/screens/planetary_groups_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../providers/player_provider.dart';
-import '../utils/navigation.dart';
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-class HomeScreen extends StatelessWidget {
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 1) {
+      // Navigate to CollectionsScreen
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CollectionsScreen()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final playerProvider = Provider.of<PlayerProvider>(context);
-
     return Scaffold(
       body: Stack(
         children: [
@@ -23,7 +37,7 @@ class HomeScreen extends StatelessWidget {
           ),
           Column(
             children: [
-              SizedBox(height: 50),
+              SizedBox(height: 50), // Adjust as needed
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -36,14 +50,6 @@ class HomeScreen extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.8),
                   ),
-                  onSubmitted: (value) {
-                    // Navigate to search friends screen
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => SearchFriendsScreen(query: value),
-                      ),
-                    );
-                  },
                 ),
               ),
               SizedBox(height: 20),
@@ -57,25 +63,27 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: ListView.builder(
+                child: ListView(
                   padding: EdgeInsets.all(8.0),
-                  itemCount: playerProvider.players.length,
-                  itemBuilder: (context, index) {
-                    final player = playerProvider.players[index];
-                    return FriendItem(name: player.name);
-                  },
+                  children: [
+                    FriendItem(name: 'salmahamed'),
+                    FriendItem(name: 'mennaosama'),
+                    FriendItem(name: 'jananayef'),
+                    FriendItem(name: 'nadinelshafey'),
+                    FriendItem(name: 'ranasaleh'),
+                    FriendItem(name: 'add a new player'),
+                  ],
                 ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to ask number of exoplanets screen
-                  NavigationUtils.navigateToStartGame(context);
+                  // Handle Start button press
                 },
                 child: Text('Start!'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -89,6 +97,8 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF141414),
         type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex, // Set the current index
+        onTap: _onItemTapped, // Handle tap events
         items: [
           BottomNavigationBarItem(
             icon: Container(
@@ -130,18 +140,6 @@ class HomeScreen extends StatelessWidget {
             label: '',
           ),
         ],
-        onTap: (index) {
-          if (index == 3) {
-            // Assuming the last icon corresponds to index 3
-            // Navigate to LeaderboardScreen when the last icon is tapped
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) =>
-                    LeaderboardScreen(), // Navigate to the LeaderboardScreen
-              ),
-            );
-          }
-        },
       ),
     );
   }
@@ -171,9 +169,7 @@ class FriendItem extends StatelessWidget {
         trailing: IconButton(
           icon: Image.asset('assets/images/icons/add_button.png'),
           onPressed: () {
-            // Add new player logic
-            Provider.of<PlayerProvider>(context, listen: false)
-                .addNewPlayer(name);
+            // Handle friend adding logic
           },
         ),
       ),

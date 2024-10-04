@@ -88,6 +88,10 @@ flutter:
     - assets/images/home_screen_icons/planet.png
     - assets/images/home_screen_icons/Playlist.png
     - assets/images/home_screen_icons/Trophy.png
+    - assets/images/quizzes/eccentric_orbits.png
+    - assets/images/quizzes/gas_giants.png
+    - assets/images/quizzes/habitable_zones.png
+    - assets/images/quizzes/super_earths.png
   fonts:
     - family: SpaceGrotesk
       fonts:
