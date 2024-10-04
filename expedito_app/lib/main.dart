@@ -4,6 +4,7 @@ import 'package:expedito_app/screens/onboarding_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart'; // Import the provider package
+import 'package:expedito_app/screens/qr_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: OnBoarding(), // Set OnBoarding as the initial route
+        home: QrScreen(), // Set OnBoarding as the initial route
         routes: {
           // Define the routes for the application
           '/newPlayer': (context) =>

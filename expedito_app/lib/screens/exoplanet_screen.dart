@@ -38,7 +38,8 @@ class ExoplanetScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
-              PlanetImage(imageUrl: planet.imageUrl), // Planet Image Widget
+              PlanetImage(imageUrl: planet.imageUrl ?? 'default_image_url'),
+ // Planet Image Widget
               SizedBox(height: 16),
               PlanetInfo(
                 name: planet.name,
