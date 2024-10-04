@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'exoplanet_screen.dart';
+import 'package:expedito_app/models/planet.dart';
 class QrScreen extends StatefulWidget {
   @override
-  _ScanExoplanetCardScreenState createState() =>
-      _ScanExoplanetCardScreenState();
+  _QrScreenState createState() => _QrScreenState();
 }
 
-class _ScanExoplanetCardScreenState extends State<QrScreen> {
+class _QrScreenState extends State<QrScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
   QRViewController? controller;
   String? scanResult;
   bool isCameraOpen = false;
@@ -51,7 +51,7 @@ class _ScanExoplanetCardScreenState extends State<QrScreen> {
                       children: [
                         Image.asset('assets/images/icons/qr_code.png'),
                         Positioned(
-                          top: 80, // Adjust this value to move the image down
+                          top: 80,
                           left: 0,
                           right: 0,
                           child: Image.asset('assets/images/icons/qr_rectangle.png'),
@@ -103,12 +103,67 @@ class _ScanExoplanetCardScreenState extends State<QrScreen> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
+    controller.scannedDataStream.listen((scanData) async {
       setState(() {
         scanResult = scanData.code ?? 'No data found';
-        // Process the QR code and retrieve exoplanet details
       });
+      
+      if (scanResult != null) {
+        // Close the QR scanner
+        controller.pauseCamera();
+        
+        try {
+          // Fetch planet data from Firestore
+          DocumentSnapshot planetDoc = await FirebaseFirestore.instance
+              .collection('planets')
+              .doc(scanResult)
+              .get();
+
+          if (planetDoc.exists) {
+            Map<String, dynamic> planetData = planetDoc.data() as Map<String, dynamic>;
+            // Create a Planet object
+            Planet planet = Planet.fromFirestore(planetData);
+            
+            // Fetch the image URL
+            await planet.fetchImageUrl();
+            
+            // Navigate to the ExoplanetScreen with the Planet object
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => ExoplanetScreen(planet: planet),
+              ),
+            );
+          } else {
+            // Handle case where planet is not found
+            _showErrorDialog('Planet not found in the database');
+          }
+        } catch (e) {
+          // Handle any errors that occur during the process
+          _showErrorDialog('Error processing planet data: $e');
+        }
+      }
     });
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+              setState(() {
+                isCameraOpen = false; // Reset camera state
+              });
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   @override
