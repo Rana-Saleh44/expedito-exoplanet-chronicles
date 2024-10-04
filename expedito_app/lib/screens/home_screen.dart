@@ -1,3 +1,4 @@
+import 'package:expedito_app/screens/leaderboard_screen.dart';
 import 'package:expedito_app/screens/seach_friends_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -129,6 +130,18 @@ class HomeScreen extends StatelessWidget {
             label: '',
           ),
         ],
+        onTap: (index) {
+          if (index == 3) {
+            // Assuming the last icon corresponds to index 3
+            // Navigate to LeaderboardScreen when the last icon is tapped
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    LeaderboardScreen(), // Navigate to the LeaderboardScreen
+              ),
+            );
+          }
+        },
       ),
     );
   }
