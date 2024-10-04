@@ -7,9 +7,9 @@ import '../widgets/planet_image.dart'; // Image widget
 import '../widgets/planet_info.dart'; // Basic info widget
 
 class ExoplanetScreen extends StatelessWidget {
-  final Planet planet; // Pass the Planet object to the screen
+  // final Planet planet; // TODO Pass the Planet object to the screen
 
-  ExoplanetScreen({required this.planet});
+  // ExoplanetScreen({required this.planet});
 
   @override
   Widget build(BuildContext context) {

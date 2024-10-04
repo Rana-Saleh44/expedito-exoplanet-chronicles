@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ElevatedButton(
                 onPressed: () {
                   // Handle Start button press
+                  Navigator.pushNamed(context, '/numExoplanets');
                 },
                 child: Text('Start!'),
                 style: ElevatedButton.styleFrom(
