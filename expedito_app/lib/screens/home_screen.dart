@@ -36,29 +36,79 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Column(
+            crossAxisAlignment:
+                CrossAxisAlignment.start, // Align children to the start (left)
             children: [
               SizedBox(height: 50), // Adjust as needed
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search for friends',
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+              Row(
+                children: [
+                  SizedBox(width: 21), // Align with the left edge
+                  Container(
+                    width: 313, // Fixed width
+                    height: 50, // Fixed height
+                    padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        topRight: Radius.circular(0),
+                      ),
+                      color: Color(0xFF161616)
+                          .withOpacity(0.8), // Adjusted background color
                     ),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Search for friends',
+                              prefixIcon: Icon(Icons.search),
+                              border: InputBorder.none, // Remove border
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                            width: 10), // Gap between text field and avatar
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      'assets/images/icons/Avatar.png',
+                      width: 30, // Adjust as needed
+                      height: 30, // Adjust as needed
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10), // Space between search and title
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 21.0), // Align text to the left
+                child: Text(
+                  'Start a New Game',
+                  style: TextStyle(
+                    fontFamily: 'Space Grotesk', // Set font family
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF3ABEF9), // Adjusted color
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
-                'Start a New Game',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.cyanAccent,
+              SizedBox(height: 10), // Space between title and friends text
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 21.0), // Align text to the left
+                child: Text(
+                  'Choose your friends',
+                  style: TextStyle(
+                    fontFamily: 'Space Grotesk', // Set font family
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -76,16 +126,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle Start button press
-                },
-                child: Text('Start!'),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle Start button press
+                  },
+                  child: Text('Start!'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
               ),

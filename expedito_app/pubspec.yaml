@@ -97,6 +97,7 @@ flutter:
     - assets/images/leaderboard/user_rank.png
     - assets/images/icons/crown.png
     - assets/images/backgrounds/Leaderboard.png
+    - assets/images/icons/Avatar.png
   fonts:
     - family: SpaceGrotesk
       fonts:
