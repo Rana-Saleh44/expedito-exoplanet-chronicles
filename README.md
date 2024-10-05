@@ -1,4 +1,4 @@
-![box4](https://github.com/user-attachments/assets/3f964733-4b3f-4a03-bd2d-3f16d2db821a)![box1](https://github.com/user-attachments/assets/301b7311-1184-428e-a43b-8cb260fca0c7)# Expedito: Chronicles of Exoplanets Exploration
+# Expedito: Chronicles of Exoplanets Exploration
 
 ## Project Overview
 This repository is for the NASA Space Apps challenge titled **Chronicles of Exoplanets Exploration**. Our team is developing a **card game** called **Expedito**, aimed at revolutionizing the way exoplanet education is delivered. The game will be designed to engage players and provide accessible knowledge about the discovery and characteristics of exoplanets, from gas giants to potentially habitable rocky worlds.
@@ -12,8 +12,8 @@ We aim to address this issue by developing an accessible card game, **Expedito**
 # Educational Game
 
 ![Game Screenshot]! 
-[Uploading box1.jpg…]
-![Uploading box4.jpg…]
+![box1](https://github.com/user-attachments/assets/301b7311-1184-428e-a43b-8cb260fca0c7)
+![box4](https://github.com/user-attachments/assets/3f964733-4b3f-4a03-bd2d-3f16d2db821a)
 
 
 ## Tech Stack
