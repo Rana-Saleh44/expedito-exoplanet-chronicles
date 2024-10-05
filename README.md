@@ -15,6 +15,10 @@ We are addressing this challenge by developing **Expedito**, an educational card
 ![box4](https://github.com/user-attachments/assets/3f964733-4b3f-4a03-bd2d-3f16d2db821a)
 
 ## Expedtio Mobile APP
+![mobile_app_1 ](https://github.com/user-attachments/assets/836af1f4-eb34-4f00-b826-56ea27df2458)
+![mobile_app_2](https://github.com/user-attachments/assets/a2d6cdcc-7287-4ffb-a023-b4117095b6b6)
+![mobile_app_3](https://github.com/user-attachments/assets/7c9e3e68-fc70-4185-81c7-42c8d19e919c)
+![mobile_app_4](https://github.com/user-attachments/assets/505dab98-6e76-45b7-b46d-34a5e95106f8)
 
 
 ## Tech Stack 
