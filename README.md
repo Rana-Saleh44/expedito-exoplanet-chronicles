@@ -21,6 +21,9 @@ We are addressing this challenge by developing **Expedito**, an educational card
 ![mobile_app_4](https://github.com/user-attachments/assets/505dab98-6e76-45b7-b46d-34a5e95106f8)
 Figma Link : https://www.figma.com/design/7WlhwnaFrwfVePPwxxDUGZ/Expedito?node-id=15-4628&node-type=canvas&t=r2XV3sUW4CywNtEt-0
 
+## Our Demo
+![expedito_demo](https://github.com/user-attachments/assets/2d1476f2-94b9-42b5-8b55-5646c142cad9)
+
 ## Tech Stack 
 Our project is built using the following technologies:
 - **Canva**: For the design of game cards.
