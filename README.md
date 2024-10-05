@@ -22,6 +22,7 @@ We are addressing this challenge by developing **Expedito**, an educational card
 Figma Link : https://www.figma.com/design/7WlhwnaFrwfVePPwxxDUGZ/Expedito?node-id=15-4628&node-type=canvas&t=r2XV3sUW4CywNtEt-0
 
 ## Our Demo
+Our demo video: https://drive.google.com/drive/folders/1Pqugd7XcU-N4LvdSuSZIb_vSoa6emRFR
 ![expedito_demo](https://github.com/user-attachments/assets/2d1476f2-94b9-42b5-8b55-5646c142cad9)
 
 ## Tech Stack 
