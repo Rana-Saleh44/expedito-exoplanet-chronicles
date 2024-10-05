@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CollectionsScreen extends StatelessWidget {
+  const CollectionsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,17 +17,17 @@ class CollectionsScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                SizedBox(height: 50), // Adjust as needed for spacing
+                const SizedBox(height: 50), // Adjust as needed for spacing
                 Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: const Icon(Icons.arrow_back_ios),
                       color: Colors.white,
                       onPressed: () {
                         // Handle back button press
                       },
                     ),
-                    Text(
+                    const Text(
                       'My Collections',
                       style: TextStyle(
                         fontSize: 24,
@@ -35,48 +37,48 @@ class CollectionsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ChoiceChip(
-                      label: Text('Planetary Groups'),
+                      label: const Text('Planetary Groups'),
                       selected: true, // Assuming this tab is active
                       onSelected: (bool selected) {},
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     ChoiceChip(
-                      label: Text('Badges'),
+                      label: const Text('Badges'),
                       selected: false, // Inactive tab
                       onSelected: (bool selected) {},
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     ChoiceChip(
-                      label: Text('Exo-Planets'),
+                      label: const Text('Exo-Planets'),
                       selected: false, // Inactive tab
                       onSelected: (bool selected) {},
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Expanded(
                   child: ListView(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     children: [
                       CollectionItem(
                         title: 'Gas Giants',
                         progress: '75%',
-                        medals: ['gold', 'silver', 'bronze'],
+                        medals: const ['gold', 'silver', 'bronze'],
                       ),
                       CollectionItem(
                         title: 'Eccentric Orbits',
                         progress: '100%',
-                        medals: ['gold', 'silver', 'bronze'],
+                        medals: const ['gold', 'silver', 'bronze'],
                       ),
                       CollectionItem(
                         title: 'Super-Earths',
                         progress: '24%',
-                        medals: ['gold'],
+                        medals: const ['gold'],
                       ),
                     ],
                   ),
@@ -86,7 +88,7 @@ class CollectionsScreen extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color(0xFF141414), // Set the background color
+          backgroundColor: const Color(0xFF141414), // Set the background color
           type: BottomNavigationBarType.fixed, // Ensure fixed type
           items: [
             BottomNavigationBarItem(
@@ -99,9 +101,9 @@ class CollectionsScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Container(
-                padding: EdgeInsets.all(8.0), // Add padding to the icon
+                padding: const EdgeInsets.all(8.0), // Add padding to the icon
                 decoration: BoxDecoration(
-                  color: Color(0xFF3ABEF9)
+                  color: const Color(0xFF3ABEF9)
                       .withOpacity(0.2), // Light background color
                   borderRadius: BorderRadius.circular(12), // Rounded corners
                 ),
@@ -139,7 +141,7 @@ class CollectionItem extends StatelessWidget {
   final String progress;
   final List<String> medals;
 
-  CollectionItem({
+  const CollectionItem({super.key, 
     required this.title,
     required this.progress,
     required this.medals,
@@ -148,12 +150,12 @@ class CollectionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12.0),
-      padding: EdgeInsets.all(16.0),
+      margin: const EdgeInsets.symmetric(vertical: 12.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.9),
         borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 8.0,
@@ -165,12 +167,12 @@ class CollectionItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -190,13 +192,13 @@ class CollectionItem extends StatelessWidget {
                 backgroundColor: Colors.cyan,
                 child: Text(
                   progress,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.arrow_forward),
+                icon: const Icon(Icons.arrow_forward),
                 onPressed: () {
                   // Handle forward button press
                 },

@@ -8,6 +8,8 @@ import '../screens/signin_screen.dart'; // Import SignInScreen here
 import '../services/auth_service.dart'; // Assuming this handles Firebase Authentication
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -108,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: screenSize.height * 0.015),
 
                   // Username TextField
-                  Container(
+                  SizedBox(
                     width: screenSize.width * 0.9,
                     child: TextFormField(
                       controller: _usernameController,
@@ -120,10 +122,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         labelText: 'Username',
                         labelStyle:
                             AppFonts.regular.copyWith(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                         ),
                       ),
@@ -138,7 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: screenSize.height * 0.015),
 
                   // Email TextField
-                  Container(
+                  SizedBox(
                     width: screenSize.width * 0.9,
                     child: TextFormField(
                       controller: _emailController,
@@ -147,10 +149,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         labelText: 'Email',
                         labelStyle:
                             AppFonts.regular.copyWith(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                         ),
                       ),
@@ -166,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: screenSize.height * 0.015),
 
                   // Password TextField
-                  Container(
+                  SizedBox(
                     width: screenSize.width * 0.9,
                     child: TextFormField(
                       controller: _passwordController,
@@ -176,10 +178,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         labelText: 'Password',
                         labelStyle:
                             AppFonts.regular.copyWith(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         suffixIcon: IconButton(
@@ -209,7 +211,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   // Sign Up button
                   _isLoading
-                      ? CircularProgressIndicator()
+                      ? const CircularProgressIndicator()
                       : GestureDetector(
                           onTap: _signUp,
                           child: Container(
@@ -247,7 +249,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         color: Colors.white,
                       ),
                       children: <TextSpan>[
-                        TextSpan(text: 'Already have an account? '),
+                        const TextSpan(text: 'Already have an account? '),
                         TextSpan(
                           text: 'Sign In',
                           style: AppFonts.bold.copyWith(

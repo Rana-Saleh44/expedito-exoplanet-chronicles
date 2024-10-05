@@ -1,6 +1,6 @@
 class Player {
-  final String id;
   final String name;
+  final int score;
 
-  Player({required this.id, required this.name});
+  Player({required this.name, required this.score});
 }

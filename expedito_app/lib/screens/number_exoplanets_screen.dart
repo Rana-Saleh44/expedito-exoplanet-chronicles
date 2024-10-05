@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class NumberExoplanets extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
+  NumberExoplanets({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +22,7 @@ class NumberExoplanets extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Title
-                Text(
+                const Text(
                     'How many exoplanets did you explore/invade?',
                     style: TextStyle(
                       fontFamily: 'Space Grotesk',
@@ -32,7 +34,7 @@ class NumberExoplanets extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                SizedBox(height: 20), // Gap between title and input
+                const SizedBox(height: 20), // Gap between title and input
                 // Input Field
     Row(
   mainAxisSize: MainAxisSize.min, // Prevents Row from taking full width
@@ -45,25 +47,25 @@ class NumberExoplanets extends StatelessWidget {
         child: TextField(
           controller: _controller,
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+            contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
             hintText: 'Enter the number of exoplanets',
             hintStyle: TextStyle(color: Colors.grey[500], fontSize: 16),
             filled: true,
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.white, width: 1),
+              borderSide: const BorderSide(color: Colors.white, width: 1),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.lightBlue, width: 1.5),
+              borderSide: const BorderSide(color: Colors.lightBlue, width: 1.5),
             ),
           ),
         ),
       ),
     ),
     IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_forward_rounded, // Right arrow icon
         size: 30,            // Adjust the size as needed
         color: Colors.blue,  // Change the color as needed
@@ -75,7 +77,7 @@ class NumberExoplanets extends StatelessWidget {
   ],
 ),
 
- SizedBox(height: 20), // Space below input
+ const SizedBox(height: 20), // Space below input
               //   // Add Player Button
               //   ElevatedButton(
               //     onPressed: () {

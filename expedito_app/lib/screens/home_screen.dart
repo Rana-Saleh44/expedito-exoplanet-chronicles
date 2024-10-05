@@ -2,6 +2,8 @@ import 'package:expedito_app/screens/planetary_groups_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -37,13 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Column(
             children: [
-              SizedBox(height: 50), // Adjust as needed
+              const SizedBox(height: 50), // Adjust as needed
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Search for friends',
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -52,8 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Start a New Game',
                 style: TextStyle(
                   fontSize: 24,
@@ -61,11 +63,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.cyanAccent,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.all(8.0),
-                  children: [
+                  padding: const EdgeInsets.all(8.0),
+                  children: const [
                     FriendItem(name: 'salmahamed'),
                     FriendItem(name: 'mennaosama'),
                     FriendItem(name: 'jananayef'),
@@ -75,13 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Handle Start button press
                   Navigator.pushNamed(context, '/numExoplanets');
                 },
-                child: Text('Start!'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,
                   backgroundColor: Colors.white,
@@ -89,23 +90,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+                child: Text('Start!'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF141414),
+        backgroundColor: const Color(0xFF141414),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex, // Set the current index
         onTap: _onItemTapped, // Handle tap events
         items: [
           BottomNavigationBarItem(
             icon: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: Color(0xFF3ABEF9).withOpacity(0.2),
+                color: const Color(0xFF3ABEF9).withOpacity(0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Image.asset(
@@ -149,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class FriendItem extends StatelessWidget {
   final String name;
 
-  const FriendItem({required this.name});
+  const FriendItem({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -162,10 +164,10 @@ class FriendItem extends StatelessWidget {
         color: Colors.black.withOpacity(0.5),
       ),
       child: ListTile(
-        leading: Icon(Icons.person, color: Colors.white),
+        leading: const Icon(Icons.person, color: Colors.white),
         title: Text(
           name,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         trailing: IconButton(
           icon: Image.asset('assets/images/icons/add_button.png'),

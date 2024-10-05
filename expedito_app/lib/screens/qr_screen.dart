@@ -3,8 +3,10 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'exoplanet_screen.dart';
 import 'package:expedito_app/models/planet.dart';
-s
+
 class QrScreen extends StatefulWidget {
+  const QrScreen({super.key});
+
   @override
   _QrScreenState createState() => _QrScreenState();
 }
@@ -19,7 +21,7 @@ class _QrScreenState extends State<QrScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/backgrounds/home.png'),
             fit: BoxFit.cover,
@@ -29,20 +31,20 @@ class _QrScreenState extends State<QrScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
            children: [
  Center(
-  child: Container(
+  child: SizedBox(
     width: 300, // Define the width for all children
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           alignment: Alignment.center,
-          child: Text(
+          child: const Text(
             'Scan Your Exoplanet Card',
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
-        SizedBox(height: 20),
-        Container(
+        const SizedBox(height: 20),
+        SizedBox(
           height: 200,
           child: isCameraOpen
               ? QRView(
@@ -68,25 +70,26 @@ class _QrScreenState extends State<QrScreen> {
                   ],
                 ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
           alignment: Alignment.center,
-          child: Text(
+          child: const Text(
             'Scan to explore and learn fascinating details about this exoplanet',
             style: TextStyle(color: Colors.white, fontSize: 16),
             textAlign: TextAlign.center,
           ),
         ),
-      SizedBox(height: 30),
+      const SizedBox(height: 30),
             SizedBox(
               width:130,
               child: ElevatedButton(
                 onPressed: () {
                   // TODO QR code
+                  setState(() {
+                    isCameraOpen = true;
+                  });
                   Navigator.pushNamed(context, '/exoplanetScreen');
-                  // setState(() {
-                  //   isCameraOpen = true;
-                  // });
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -95,15 +98,16 @@ class _QrScreenState extends State<QrScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Text('Scan', style: TextStyle(fontWeight: FontWeight.bold),),
+                child: const Text('Scan', style: TextStyle(fontWeight: FontWeight.bold),),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(
               width:130,
               child: ElevatedButton(
                 onPressed: () {
                   // TODO Navigate to Leaderboard Screen
+                  Navigator.pushNamed(context, '/leaderboard');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -112,7 +116,7 @@ class _QrScreenState extends State<QrScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Text('Leaderboard', style: TextStyle(fontWeight: FontWeight.bold),),
+                child: const Text('Leaderboard', style: TextStyle(fontWeight: FontWeight.bold),),
               ),
             ),
           
@@ -153,11 +157,11 @@ class _QrScreenState extends State<QrScreen> {
             await planet.fetchImageUrl();
             
             // Navigate to the ExoplanetScreen with the Planet object
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => ExoplanetScreen(planet: planet),
-              ),
-            );
+            // Navigator.of(context).pushReplacement(
+            //   MaterialPageRoute(
+            //     builder: (context) => ExoplanetScreen(planet: planet),
+            //   ),
+            // );
           } else {
             // Handle case where planet is not found
             _showErrorDialog('Planet not found in the database');
@@ -174,11 +178,11 @@ class _QrScreenState extends State<QrScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Error'),
+        title: const Text('Error'),
         content: Text(message),
         actions: [
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () {
               Navigator.of(context).pop(); // Close the dialog
               setState(() {

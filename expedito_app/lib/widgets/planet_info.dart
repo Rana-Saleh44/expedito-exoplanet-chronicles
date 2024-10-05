@@ -4,7 +4,7 @@ class PlanetInfo extends StatelessWidget {
   final String name;
   final String description;
 
-  PlanetInfo({required this.name, required this.description});
+  const PlanetInfo({super.key, required this.name, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +12,16 @@ class PlanetInfo extends StatelessWidget {
       children: [
         Text(
           name,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           description,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             color: Colors.white70,
           ),

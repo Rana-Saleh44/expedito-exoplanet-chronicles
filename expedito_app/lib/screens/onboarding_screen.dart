@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../utils/constants.dart'; // Import the constants file
 
 class OnBoarding extends StatelessWidget {
+  const OnBoarding({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Get the screen dimensions
@@ -54,12 +56,13 @@ class OnBoarding extends StatelessWidget {
                         0.1), // Adjust space between text and button
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              SignUpScreen()), // Navigate to SignUpScreen
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) =>
+                    //           SignUpScreen()), // Navigate to SignUpScreen
+                    // );
+                    Navigator.pushNamed(context, '/numExoplanets');
                   },
                   child: Container(
                     width: screenWidth * 0.8, // Responsive width for the button
@@ -82,7 +85,7 @@ class OnBoarding extends StatelessWidget {
                           MainAxisAlignment.center, // Center the text and icon
                       children: [
                         Text(
-                          'Sign Up & Play!',
+                          'Start Exploring the Galaxy!',
                           style: AppFonts.bold.copyWith(
                             fontSize:
                                 screenHeight * 0.025, // Responsive font size
@@ -90,8 +93,8 @@ class OnBoarding extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(width: 10), // Space between text and icon
-                        Icon(
+                        const SizedBox(width: 10), // Space between text and icon
+                        const Icon(
                           Icons.arrow_forward,
                           color: AppColors.black,
                           size: 28,

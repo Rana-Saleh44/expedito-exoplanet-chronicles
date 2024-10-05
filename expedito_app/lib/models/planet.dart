@@ -24,7 +24,7 @@ class Planet {
 
   Planet({
     required this.id,
-    required this.name,
+     this.name,
      this.description,
      this.type,
      this.distance,
@@ -34,7 +34,7 @@ class Planet {
      this.temperature,
      this.habitability,
      this.details,
-     required this.imageUrl,
+     this.imageUrl,
      this.classification,
      this.constellation,
      this.status,
@@ -45,36 +45,38 @@ class Planet {
      this.composition,
   });
 
-  // factory Planet.fromFirestore(Map<String, dynamic> data) {
-  //   return Planet(
-  //     name: data['name'] ?? '',
-  //     description: data['description'] ?? '',
-  //     type: data['type'] ?? '',
-  //     distance: data['distance'] ?? '',
-  //     star: data['star'] ?? '',
-  //     orbit: data['orbit'] ?? '',
-  //     size: data['size'] ?? '',
-  //     temperature: data['temperature'] ?? '',
-  //     habitability: data['habitability'] ?? '',
-  //     details: data['details'] ?? '',
-  //     classification: data['classification'] ?? '',
-  //     constellation: data['constellation'] ?? '',
-  //     status: data['status'] ?? '',
-  //     uniqueFeature: data['uniqueFeature'] ?? '',
-  //     weather: data['weather'] ?? '',
-  //     discoveryMethod: data['discoveryMethod'] ?? '',
-  //     meaning: data['meaning'] ?? '',
-  //     composition: data['composition'] ?? '',
-  //   );
-  // }
+  factory Planet.fromFirestore(Map<String, dynamic> data) {
+    return Planet(
+      id: data['id'] ?? '',
+      name: data['name'] ?? '',
+      description: data['description'] ?? '',
+      type: data['type'] ?? '',
+      distance: data['distance'] ?? '',
+      star: data['star'] ?? '',
+      orbit: data['orbit'] ?? '',
+      size: data['size'] ?? '',
+      temperature: data['temperature'] ?? '',
+      habitability: data['habitability'] ?? '',
+      details: data['details'] ?? '',
+      classification: data['classification'] ?? '',
+      constellation: data['constellation'] ?? '',
+      status: data['status'] ?? '',
+      uniqueFeature: data['uniqueFeature'] ?? '',
+      weather: data['weather'] ?? '',
+      discoveryMethod: data['discoveryMethod'] ?? '',
+      meaning: data['meaning'] ?? '',
+      composition: data['composition'] ?? '',
+      imageUrl: data['imageUrl'] ?? '',
+    );
+  }
 
   Future<void> fetchImageUrl() async {
     try {
-      final ref = FirebaseStorage.instance.ref('planets/${this.name}.jpg');
-      this.imageUrl = await ref.getDownloadURL();
+      final ref = FirebaseStorage.instance.ref('${name}.png');
+      imageUrl = await ref.getDownloadURL();
     } catch (e) {
-      print('Error fetching image URL: $e');
-      this.imageUrl = null; // or a URL to a default image
+      print('Error fetchings image URL: $e');
+      imageUrl = null; // or a URL to a default image
     }
   }
 }

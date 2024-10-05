@@ -7,7 +7,7 @@ import '../providers/player_provider.dart'; // Import PlayerProvider
 class SearchFriendsScreen extends StatefulWidget {
   final String query;
 
-  const SearchFriendsScreen({required this.query, Key? key}) : super(key: key);
+  const SearchFriendsScreen({required this.query, super.key});
 
   @override
   _SearchFriendsScreenState createState() => _SearchFriendsScreenState();
@@ -49,7 +49,7 @@ class _SearchFriendsScreenState extends State<SearchFriendsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search Friends'),
+        title: const Text('Search Friends'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -62,7 +62,7 @@ class _SearchFriendsScreenState extends State<SearchFriendsScreen> {
               },
               decoration: InputDecoration(
                 hintText: 'Search for friends',
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -70,7 +70,7 @@ class _SearchFriendsScreenState extends State<SearchFriendsScreen> {
                 fillColor: Colors.white.withOpacity(0.8),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: _filteredPlayers.length,
@@ -90,7 +90,7 @@ class _SearchFriendsScreenState extends State<SearchFriendsScreen> {
 class FriendItem extends StatelessWidget {
   final String name;
 
-  const FriendItem({required this.name, Key? key}) : super(key: key);
+  const FriendItem({required this.name, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -103,13 +103,13 @@ class FriendItem extends StatelessWidget {
         color: Colors.black.withOpacity(0.5),
       ),
       child: ListTile(
-        leading: Icon(Icons.person, color: Colors.white),
+        leading: const Icon(Icons.person, color: Colors.white),
         title: Text(
           name,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         trailing: IconButton(
-          icon: Icon(Icons.add,
+          icon: const Icon(Icons.add,
               color: Colors
                   .white), // You can replace with an asset if you have one
           onPressed: () {

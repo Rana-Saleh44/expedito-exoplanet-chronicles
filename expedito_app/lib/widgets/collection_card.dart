@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 class CollectionCard extends StatelessWidget {
   final CollectionItem item;
 
-  CollectionCard({required this.item});
+  const CollectionCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
       child: ListTile(
         leading: Row(
           mainAxisSize: MainAxisSize.min,
@@ -24,7 +24,7 @@ class CollectionCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('${(item.progress * 100).toInt()}%'),
-            Icon(Icons.arrow_forward),
+            const Icon(Icons.arrow_forward),
           ],
         ),
         onTap: () {

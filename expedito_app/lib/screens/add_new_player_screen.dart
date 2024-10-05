@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class NewPlayerScreen extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
+  NewPlayerScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,10 +22,10 @@ class NewPlayerScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Title
-                Container(
+                SizedBox(
                   width: 299,
                   height: 89,
-                  child: Text(
+                  child: const Text(
                     'New Player Name',
                     style: TextStyle(
                       fontFamily: 'Space Grotesk',
@@ -36,12 +38,12 @@ class NewPlayerScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 20), // Gap between title and input
+                const SizedBox(height: 20), // Gap between title and input
                 // Input Field
                 Container(
                   width: 240,
                   height: 40,
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.white, width: 1),
@@ -56,7 +58,7 @@ class NewPlayerScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20), // Space below input
+                const SizedBox(height: 20), // Space below input
                 // Add Player Button
                 ElevatedButton(
                   onPressed: () {
@@ -65,14 +67,14 @@ class NewPlayerScreen extends StatelessWidget {
                     print('New player name: $playerName');
                     // Add your logic here
                   },
-                  child: Text('Add Player'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue, // Button color
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
+                  child: Text('Add Player'),
                 ),
               ],
             ),

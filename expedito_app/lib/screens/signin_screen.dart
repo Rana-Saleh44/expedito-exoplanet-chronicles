@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart'; // Import your HomeScreen
 
 class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
@@ -91,7 +93,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(height: screenSize.height * 0.015),
 
 // Email TextField
-                Container(
+                SizedBox(
                   width: screenSize.width * 0.9,
                   child: TextField(
                     controller: _emailController,
@@ -101,10 +103,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       labelText: 'Email',
                       labelStyle:
                           AppFonts.regular.copyWith(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
                     ),
@@ -113,7 +115,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                 SizedBox(height: screenSize.height * 0.015),
                 // Password TextField
-                Container(
+                SizedBox(
                   width: screenSize.width * 0.9,
                   child: TextField(
                     controller: _passwordController,
@@ -124,10 +126,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       labelText: 'Password',
                       labelStyle:
                           AppFonts.regular.copyWith(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
                       suffixIcon: IconButton(
@@ -149,10 +151,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(height: screenSize.height * 0.015),
 
                 // "Or" Text
-                Container(
+                SizedBox(
                   width: 64,
                   height: 26,
-                  child: Text(
+                  child: const Text(
                     'Or',
                     style: TextStyle(
                       color: Colors.white,
@@ -174,7 +176,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -183,8 +185,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           width: 25,
                           height: 25,
                         ),
-                        SizedBox(width: 8),
-                        Text(
+                        const SizedBox(width: 8),
+                        const Text(
                           'Continue with Google',
                           style: TextStyle(
                             color: Colors.white,

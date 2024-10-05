@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class QuizzesScreen extends StatefulWidget {
+  const QuizzesScreen({super.key});
+
   @override
   _QuizzesScreenState createState() => _QuizzesScreenState();
 }
@@ -68,9 +70,9 @@ class _QuizzesScreenState extends State<QuizzesScreen> {
                         width: screenWidth * 0.1, // Adjust size for responsiveness
                         height: screenWidth * 0.1,
                       ),
-                      Expanded(
+                      const Expanded(
                         child: Center(
-                          child: const Text(
+                          child: Text(
                             'Quizzes',
                             style: TextStyle(
                               fontFamily: 'Space Grotesk',
@@ -129,7 +131,7 @@ class _QuizzesScreenState extends State<QuizzesScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF141414),
+        backgroundColor: const Color(0xFF141414),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex, // Set the current index
         onTap: _onItemTapped, // Handle tap events
@@ -152,9 +154,9 @@ class _QuizzesScreenState extends State<QuizzesScreen> {
           ),
           BottomNavigationBarItem(
             icon: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: Color(0xFF3ABEF9).withOpacity(0.2),
+                color: const Color(0xFF3ABEF9).withOpacity(0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Image.asset(
@@ -181,22 +183,28 @@ class _QuizzesScreenState extends State<QuizzesScreen> {
 
 // Sample screens for navigation
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Home Screen")));
+    return const Scaffold(body: Center(child: Text("Home Screen")));
   }
 }
 
 class CollectionsScreen extends StatelessWidget {
+  const CollectionsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Collections Screen")));
+    return const Scaffold(body: Center(child: Text("Collections Screen")));
   }
 }
 
 class LeaderboardScreen extends StatelessWidget {
+  const LeaderboardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Leaderboard Screen")));
+    return const Scaffold(body: Center(child: Text("Leaderboard Screen")));
   }
 }
