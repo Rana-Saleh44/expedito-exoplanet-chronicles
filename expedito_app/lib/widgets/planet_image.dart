@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PlanetImage extends StatelessWidget {
   final String imageUrl;
 
-  PlanetImage({required this.imageUrl});
+  const PlanetImage({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
