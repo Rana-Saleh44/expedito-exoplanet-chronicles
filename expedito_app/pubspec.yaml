@@ -94,6 +94,9 @@ flutter:
     - assets/images/quizzes/habitable_zones.png
     - assets/images/quizzes/super_earths.png
     - assets/images/quizzes/arrow.png
+    - assets/images/leaderboard/user_rank.png
+    - assets/images/icons/crown.png
+    - assets/images/backgrounds/Leaderboard.png
   fonts:
     - family: SpaceGrotesk
       fonts:

@@ -6,15 +6,26 @@ import '../providers/player_provider.dart';
 class LeaderboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Get the screen width and height
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/backgrounds/Planet.png',
+              'assets/images/backgrounds/Leaderboard.png',
               fit: BoxFit.cover,
             ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Stack for Arrow Icon and Centered Leaderboard Title
+              // (Add your leaderboard title and other UI components here)
+            ],
           ),
         ],
       ),
@@ -25,38 +36,38 @@ class LeaderboardScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/images/home_screen_icons/Home.png',
-              width: 24,
-              height: 24,
+              width: screenWidth * 0.06,
+              height: screenHeight * 0.03,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/images/home_screen_icons/planet.png',
-              width: 24,
-              height: 24,
+              width: screenWidth * 0.06,
+              height: screenHeight * 0.03,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/images/home_screen_icons/Playlist.png',
-              width: 24,
-              height: 24,
+              width: screenWidth * 0.06,
+              height: screenHeight * 0.03,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(screenWidth * 0.02),
               decoration: BoxDecoration(
                 color: Color(0xFF3ABEF9).withOpacity(0.2),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(screenWidth * 0.03),
               ),
               child: Image.asset(
                 'assets/images/home_screen_icons/Trophy.png',
-                width: 24,
-                height: 24,
+                width: screenWidth * 0.06,
+                height: screenHeight * 0.03,
               ),
             ),
             label: '',
@@ -74,12 +85,14 @@ class FriendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      margin: EdgeInsets.symmetric(vertical: screenWidth * 0.02),
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(screenWidth * 0.02),
         color: Colors.black.withOpacity(0.5),
       ),
       child: ListTile(
