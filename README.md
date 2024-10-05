@@ -19,7 +19,7 @@ We are addressing this challenge by developing **Expedito**, an educational card
 ![mobile_app_2](https://github.com/user-attachments/assets/a2d6cdcc-7287-4ffb-a023-b4117095b6b6)
 ![mobile_app_3](https://github.com/user-attachments/assets/7c9e3e68-fc70-4185-81c7-42c8d19e919c)
 ![mobile_app_4](https://github.com/user-attachments/assets/505dab98-6e76-45b7-b46d-34a5e95106f8)
-
+Figma Link : https://www.figma.com/design/7WlhwnaFrwfVePPwxxDUGZ/Expedito?node-id=15-4628&node-type=canvas&t=r2XV3sUW4CywNtEt-0
 
 ## Tech Stack 
 Our project is built using the following technologies:
