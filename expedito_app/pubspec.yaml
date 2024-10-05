@@ -98,6 +98,14 @@ flutter:
     - assets/images/icons/crown.png
     - assets/images/backgrounds/Leaderboard.png
     - assets/images/icons/Avatar.png
+    - assets/images/q1/a1.png
+    - assets/images/q1/a2.png
+    - assets/images/q1/a3.png
+    - assets/images/q1/a4.png
+    - assets/images/q1/background.png
+    - assets/images/q1/next.png
+    - assets/images/q1/ques1.png
+    - assets/images/q1/top_frame.png
   fonts:
     - family: SpaceGrotesk
       fonts:
