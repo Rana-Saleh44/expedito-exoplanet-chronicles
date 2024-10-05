@@ -11,7 +11,6 @@ We are addressing this challenge by developing **Expedito**, an educational card
 
 ## Educational Game
 
-![Game Screenshot]!  
 ![box1](https://github.com/user-attachments/assets/301b7311-1184-428e-a43b-8cb260fca0c7)  
 ![box4](https://github.com/user-attachments/assets/3f964733-4b3f-4a03-bd2d-3f16d2db821a)
 
